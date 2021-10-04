@@ -1,0 +1,1 @@
+İki al ver yapıp bu projeyi bitirmemiz lazım.
