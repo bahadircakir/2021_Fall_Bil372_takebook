@@ -1,0 +1,105 @@
+{% import "components.html" as components %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>takebook</title>
+    <link rel = "icon" href = "http://127.0.0.1:8887/logo.png" type = "image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/home.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/card.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/login"><label>Giriş Yap</label></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/register"><label>Kayıt ol</label></a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <label>Yardım</label>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                  <li><a class="dropdown-item" href="#"><label>S.S.S.</label></a></li>
+                  <li><a class="dropdown-item" href="#"><label>İletişim</label></a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <div class="takebook">
+        <img class="takebook-logo" src="http://127.0.0.1:8887/logo.jpg">
+        <h2>takebook</h2>
+        <form class="d-flex" action="">
+            <input class="form-control me-2" type="search" placeholder="kitap adı, yazar veya yayınevi ara" aria-label="Search">
+            <button class="sepet btn btn-outline-success" type="submit">Ara</button>
+        </form>
+        <button type="button" class="favori btn btn-primary">
+            Favorilerim <span class="fb badge badge-light">4</span>
+        </button>
+        <button type="button" class="sepet btn btn-primary">
+            Sepetim <span class="sb badge badge-light">4</span>
+        </button>
+    </div>
+    <div class="kategori">
+        <a href=""><button type="button" class="kb btn btn-warning "><h6>Edebiyat</h6></button></a> 
+        <a href=""><button type="button" class="kb btn btn-success "><h6>Müzik</h6></button></a> 
+        <a href=""><button type="button" class="kb btn btn-info "><h6>Bilim & Kurgu</h6></button></a> 
+        <a href=""><button type="button" class="kb btn btn-warning "><h6>Ekonomi</h6></button></a> 
+        <a href=""><button type="button" class="kb btn btn-danger "><h6>Tarih</h6></button></a> 
+        <a href=""><button type="button" class="kb btn btn-primary "><h6>Sağlık</h6></button></a> 
+        <a href=""><button type="button" class="kb btn btn-success "><h6>Psikoloji</h6></button></a> 
+    </div> 
+
+    <div class="cok-satan">
+        <div class="ribbon-wrapper">
+            <div class="ribbon">ÇOK SATAN</div>
+        </div>
+        <div class="cards">
+            {{ components.card("a", "Kitap 1", 100) }}
+            {{ components.card("a", "Kitap 1", 100) }}
+            {{ components.card("a", "Kitap 1", 100) }}
+            {{ components.card("a", "Kitap 1", 100) }}
+            {{ components.card("a", "Kitap 1", 100) }}
+        </div>
+    </div>
+
+    <div class="rastgele">
+        <div class="ribbon-wrapper">
+            <div class="ribbon">RASTGELE</div>
+        </div>
+        <div class="cards">
+            {{ components.card("a", "Kitap 2", 100) }}
+            {{ components.card("a", "Kitap 2", 100) }}
+            {{ components.card("a", "Kitap 2", 100) }}
+            {{ components.card("a", "Kitap 2", 100) }}
+            {{ components.card("a", "Kitap 2", 100) }}
+        </div>
+    </div>
+
+    <div class="sana-ozel">
+        <div class="ribbon-wrapper">
+            <div class="ribbon">SANA ÖZEL</div>
+        </div>
+        <div class="cards">
+            {{ components.card("a", "Kitap 2", 100) }}
+            {{ components.card("a", "Kitap 2", 100) }}
+            {{ components.card("a", "Kitap 2", 100) }}
+            {{ components.card("a", "Kitap 2", 100) }}
+            {{ components.card("a", "Kitap 2", 100) }}
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+</body>
+</html>

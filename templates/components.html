@@ -1,0 +1,27 @@
+{% macro card(image, title, price) %}
+<div class="kabuk">
+    <div class="container" style="background: url('{{image}}'); background-size: cover; ">
+        <div class="overlay">
+            <div class = "items head">
+                <p>{{title}}</p>
+                <hr>
+            </div>
+            <div class = "items price">
+                <p class="new">₺{{price}}</p>
+            </div>
+            <div class="items cart">
+                <i class="fa fa-shopping-cart"></i>
+                <span>SEPETE EKLE</span>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button type="button" class="fav btn btn-primary">
+            Favorilere Ekle
+        </button> <br>
+        <button type="button" class="sep btn btn-primary">
+            Sepete Ekle
+        </button>
+    </div>
+</div>
+{% endmacro %}
