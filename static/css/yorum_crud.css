@@ -8,6 +8,11 @@ table {
 input {
     width: 100px;
 }
+input.search {
+    margin: auto;
+    width: 200px;
+    margin-top: 50px;
+}
 button.onayla {
     float: right;
 }
