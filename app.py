@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import psycopg2
 
+
 def get_yayinevi_details():
     try:
         connection = psycopg2.connect(user="postgres",
@@ -90,6 +91,32 @@ def search_yayinevi(search_word):
         print(error)
 
     finally:
+        if connection:
+            cursor.close()
+            connection.close()
+            print("PostgreSQL connection is closed")
+
+
+def update_yayinevi(id, name):
+    try:
+        connection = psycopg2.connect(user="postgres",
+                                      password="password",
+                                      host="127.0.0.1",
+                                      port="5432",
+                                      database="takebook_db")
+
+        cursor = connection.cursor()
+        sql_update_query = """Update \"YAYINEVI\" set \"Yayinevi_Ismi\" = %s where \"Yayinevi_Id\" = %s"""
+        cursor.execute(sql_update_query, (name, id))
+        connection.commit()
+        count = cursor.rowcount
+        print(count, "Record Updated successfully ")
+
+    except (Exception, psycopg2.Error) as error:
+        print("Error in update operation", error)
+
+    finally:
+        # closing database connection.
         if connection:
             cursor.close()
             connection.close()
@@ -190,6 +217,30 @@ def search_yazar(search_word):
             connection.close()
             print("PostgreSQL connection is closed")
 
+def update_yazar(id, name, surname):
+    try:
+        connection = psycopg2.connect(user="postgres",
+                                      password="password",
+                                      host="127.0.0.1",
+                                      port="5432",
+                                      database="takebook_db")
+
+        cursor = connection.cursor()
+        sql_update_query = """Update \"YAZAR" set \"Yazar_Ismi\" = %s , \"Yazar_Soyismi\" = %s  where \"Yazar_Id\" = %s"""
+        cursor.execute(sql_update_query, (name, surname, id))
+        connection.commit()
+        count = cursor.rowcount
+        print(count, "Record Updated successfully ")
+
+    except (Exception, psycopg2.Error) as error:
+        print("Error in update operation", error)
+
+    finally:
+        # closing database connection.
+        if connection:
+            cursor.close()
+            connection.close()
+            print("PostgreSQL connection is closed")
 
 def delete_yorum(id):
     try:
@@ -355,6 +406,31 @@ def search_kategori(name):
             connection.close()
             print("PostgreSQL connection is closed")
 
+def update_kategori(id, name):
+    try:
+        connection = psycopg2.connect(user="postgres",
+                                      password="password",
+                                      host="127.0.0.1",
+                                      port="5432",
+                                      database="takebook_db")
+
+        cursor = connection.cursor()
+        sql_update_query = """Update \"KATEGORI\" set \"Kategori_Ismi\" = %s where \"Kategori_Id\" = %s"""
+        cursor.execute(sql_update_query, (name, id))
+        connection.commit()
+        count = cursor.rowcount
+        print(count, "Record Updated successfully ")
+
+    except (Exception, psycopg2.Error) as error:
+        print("Error in update operation", error)
+
+    finally:
+        # closing database connection.
+        if connection:
+            cursor.close()
+            connection.close()
+            print("PostgreSQL connection is closed")
+
 
 app = Flask(__name__)
 
@@ -481,6 +557,28 @@ def kategori_ara():
     aranacak = request.form.get("search_word")
     return render_template("kategori_crud.html", kategoriler=search_kategori(aranacak))
 
+
+@app.route("/yayinevi_guncelle", methods=["POST"])
+def yayinevi_guncelle():
+    id = request.form.get("yayinevi_id")
+    name = request.form.get("yayinevi_ismi")
+    update_yayinevi(id, name)
+    return render_template("yayinevi_crud.html", yayinevleri=get_yayinevi_details())
+
+@app.route("/yazar_guncelle", methods=["POST"])
+def yazar_guncelle():
+    id = request.form.get("yazar_id")
+    name = request.form.get("yazar_ismi")
+    surname = request.form.get("yazar_soyismi")
+    update_yazar(id, name, surname)
+    return render_template("yazar_crud.html", yazarlar=get_yazar_details())
+
+@app.route("/kategori_guncelle", methods=["POST"])
+def kategori_guncelle():
+    id = request.form.get("kategori_id")
+    name = request.form.get("kategori_ismi")
+    update_kategori(id, name)
+    return render_template("kategori_crud.html", kategoriler=get_kategori_details())
 
 if __name__ == "__main__":
     app.run(debug=True)
