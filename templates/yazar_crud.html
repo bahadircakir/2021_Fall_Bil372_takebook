@@ -70,13 +70,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="/" method="POST">
+                        <form action="/yazar_guncelle" method="POST">
                         <label>Yazar ID: </label>
-                        <input name="yazar_id" type="text" class="form-control" value="{{yazar[0]}}"><br>
+                        <input name="yazar_id" type="text" class="form-control" value={{yazar[0]}}><br>
                         <label>Yazar İsmi: </label>
-                        <input name="yazar_ismi" type="text" class="form-control" value="{{yazar[1]}}"><br>
+                        <input name="yazar_ismi" type="text" class="form-control" value={{yazar[1]}}><br>
                         <label>Yazar Soyismi: </label>
-                        <input name="yazar_soyismi" type="text" class="form-control" value="{{yazar[2]}}"><br>
+                        <input name="yazar_soyismi" type="text" class="form-control" value={{yazar[2]}}><br>
                         <button type="submit" class="onayla btn btn-primary">Onayla</button> <br>
                         </form>
                     </div>
