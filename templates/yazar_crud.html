@@ -36,8 +36,8 @@
             </div>
             </div>
         </div>
-        <form class="d-flex" action="">
-            <input class="search form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex" action="/yazar_ara" method="POST">
+            <input name="search_word" class="search form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
         <div class="head">
@@ -71,7 +71,7 @@
                     </div>
                     <div class="modal-body">
                         <form action="/" method="POST">
-                        <label>Yazar Anne: </label>
+                        <label>Yazar ID: </label>
                         <input name="yazar_id" type="text" class="form-control" value={{yazar[0]}}><br>
                         <label>Yazar İsmi: </label>
                         <input name="yazar_ismi" type="text" class="form-control" value={{yazar[1]}}><br>
