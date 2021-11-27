@@ -22,7 +22,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <form action="/" method="POST">
+                <form action="/kitap_ekle" method="POST">
                     <div class="left">
                         <label>Kitap ID: </label>
                         <input name="kitap_id" type="text" class="form-control" ><br>
@@ -42,14 +42,14 @@
                         <input name="sayfa_sayisi" type="text" class="form-control" > <br>
                         <label>Ebat: </label>
                         <input name="ebat" type="text" class="form-control" ><br>
-                        <label>Baskı Sayısı: </label>
-                        <input name="baski_sayisi" type="text" class="form-control" ><br>
                         <label>Dil: </label>
                         <input name="dil" type="text" class="form-control" ><br>
                         <label>Çevirmen: </label>
                         <input name="cevirmen" type="text" class="form-control" ><br>
                         <label>Yazar ID: </label>
                         <input name="yazar_id" type="text" class="form-control" ><br>
+                        <label>Baskı Sayısı: </label>
+                        <input name="baski_sayisi" type="text" class="form-control" ><br>
                     </div>
                     <button type="submit" class="onayla btn btn-primary">Onayla</button> <br>
                 </form>
@@ -76,10 +76,10 @@
                 <th scope="col">Hamur Tipi</th>
                 <th scope="col">Sayfa Sayısı</th>
                 <th scope="col">Ebat</th>
-                <th scope="col">Baskı Sayısı</th>
                 <th scope="col">Dil</th>
                 <th scope="col">Çevirmen</th>
                 <th scope="col">Yazar ID</th>
+                <th scope="col">Baskı Sayısı</th>
                 <th scope="col">Sil</th>
                 <th scope="col">Güncelle</th>
               </tr>
