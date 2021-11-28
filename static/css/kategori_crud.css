@@ -3,7 +3,7 @@ table {
     margin-bottom: 100px;
 }
 .container{
-    margin-left: 300px;
+    margin-left: 100px;
 }
 input {
     width: 100px;
@@ -42,14 +42,14 @@ h5 {
     width: 500px;
 }
 button.ekle {
-    margin-left: 50px;
+    margin-left: 30px;
+    margin-top: -5px;
 }
 h4 {
     float: left;
 }
 h3 {
     text-align: center;
+    margin-bottom: 30px;
 }
-td {
-    text-align: center;
-}
+

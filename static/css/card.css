@@ -1,31 +1,6 @@
 .kabuk {
     float: left;
 }
-.sep {
-    margin-left: 40px;
-    margin-top: 10px;
-    float: left;
-    background-color: #f0f2f5;
-    border-color: #3178ea;
-    color: #3178ea;
-}
-.sep:hover {
-    background-color: #3178ea;
-    color: #f0f2f5;
-}
-  
-  .fav {
-    margin-left: 40px;
-    margin-top: 20px;
-    background-color: #f0f2f5;
-    border-color: #65b543;
-    color: #65b543;
-  }
-.fav:hover {
-    border-color: #65b543;
-    background-color: #65b543;
-    color: #f0f2f5;
-  }
 .container {
     width: 160px;
     height: 210px;

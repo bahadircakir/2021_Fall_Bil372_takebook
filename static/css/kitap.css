@@ -90,11 +90,13 @@ h6.oyla {
 .left {
   float: left;
   font-weight: 500;
+  font-size: 11px;
 }
 
 .right {
   margin-left: 10px;
   float: left;
+  font-size: 11px;
 }
 
 img.kitap-kapak {
@@ -104,10 +106,10 @@ img.kitap-kapak {
   margin: auto;
 }
 .kitap {
-    width: 300px;
+    width: 350px;
     padding: 10px;
     border:1px solid black;
-    margin-top: 60px;
+    margin-top: 50px;
     margin-left: 100px;
     float: left;
     position: fixed;
@@ -117,7 +119,7 @@ img.kitap-kapak {
 .resim {
     margin: auto;
     margin-bottom: 0px;
-    width: 250px;
+    width: 300px;
     height: 220px;
     padding: 10px;
     border:1px solid black;
@@ -125,9 +127,9 @@ img.kitap-kapak {
 
 .ozellik {
     margin: auto;
-    width: 250px;
+    width: 330px;
     height: 250px;
-    padding: 20px;
+    padding: 10px;
     border:1px solid black;
 }
 
@@ -135,7 +137,7 @@ img.kitap-kapak {
     width: 850px;
     padding: 10px;
     border:1px solid black;
-    margin: 55px;
+    margin: 45px;
     margin-left: 50px;
     margin-right: 100px;
     float: right;
@@ -163,7 +165,7 @@ img.kitap-kapak {
     width: 1400px;
     height: 100px;
     display: inline-block;
-    margin-left: 50px;
+    margin-left: 70px;
     margin-right: 50px;
     padding: 25px;
     border:1px solid black;
