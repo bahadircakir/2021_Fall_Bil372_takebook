@@ -1,0 +1,155 @@
+{% import "components.html" as components %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      var username = "{{username}}";
+      console.log(username);
+      localStorage.setItem("username", username);
+    </script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='css/sepet.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='css/card.css') }}"
+    />
+    <title>Sepet</title>
+    <link
+      rel="icon"
+      href="http://127.0.0.1:8887/logo.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul
+            class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+            style="--bs-scroll-height: 100px"
+          >
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/kullanici/{{username}}"
+                ><label id="username"></label
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/logged?username={{username}}"
+                ><label id="username">anasayfa</label
+              ></a>
+            </li>
+            <script>
+              var username = localStorage.getItem("username");
+              var textnode = document.createTextNode(`${username}`);
+              console.log(textnode);
+              document.getElementById("username").appendChild(textnode);
+            </script>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarScrollingDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <label>Yardım</label>
+              </a>
+              <ul
+                class="dropdown-menu"
+                aria-labelledby="navbarScrollingDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="#"><label>S.S.S.</label></a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><label>İletişim</label></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="takebook">
+      <img class="takebook-logo" src="http://127.0.0.1:8887/logo.jpg" />
+      <h2>takebook</h2>
+      <form class="d-flex" action="">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="kitap adı, yazar veya yayınevi ara"
+          aria-label="Search"
+        />
+        <button class="sepet btn btn-outline-success" type="submit">Ara</button>
+      </form>
+      <a href="/favori/{{username}}">
+        <button type="button" class="favori btn btn-success">
+          Favorilerim <span class="fb badge badge-light">{{fav_number}}</span>
+        </button>
+      </a>
+      <a href="/sepet/{{username}}">
+        <button type="button" class="sepet btn btn-primary">
+          Sepetim <span class="sb badge badge-light">{{cart_number}}</span>
+        </button>
+      </a>
+    </div>
+    <h5>Sepetimi Temizle</h5>
+    <a href="/sepet_temizle/{{username}}"
+      ><button
+        type="button"
+        class="sil b_button_slide b_slide_right btn btn-primary blue"
+      >
+        Hepsini Sil
+      </button></a
+    >
+    <h5>Satın Al</h5>
+    <a href="/"
+      ><button
+        type="button"
+        class="ekle b_button_slide b_slide_right btn btn-primary blue"
+      >
+        Hepsini Al
+      </button></a
+    >
+    <div class="sepett">
+      <div class="ribbon-wrapper">
+        <div class="ribbon">SEPET</div>
+      </div>
+      <div class="cards">
+        {% for car in cards %}
+        <div class="card-kabuk">
+          {{ components.card(car[3], car[1], car[2], car[0]) }}
+          <div class="buttons">
+            <a href="/satin_al/{{username}}/{{car[0]}}">
+              <button type="button" class="pur btn btn-primary">S</button>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% if message == "error" %}
+    <div class="alert alert-danger" role="alert">Sepet boş</div>
+
+    {% endif %}
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

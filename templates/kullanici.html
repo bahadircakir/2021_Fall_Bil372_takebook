@@ -1,0 +1,277 @@
+{% import "components.html" as components %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kullanici Adi</title>
+    <link
+      rel="icon"
+      href="http://127.0.0.1:8887/logo.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='css/kullanici.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='css/yorum_kullanici.css') }}"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul
+            class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+            style="--bs-scroll-height: 100px"
+          >
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="/kullanici/{{username}}"
+                ><label id="username"></label
+              ></a>
+            </li>
+            <script>
+              var username = localStorage.getItem("username");
+              var textnode = document.createTextNode(`${username}`);
+              console.log(textnode);
+              document.getElementById("username").appendChild(textnode);
+            </script>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarScrollingDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <label>Yardım</label>
+              </a>
+              <ul
+                class="dropdown-menu"
+                aria-labelledby="navbarScrollingDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="#"><label>S.S.S.</label></a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><label>İletişim</label></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="takebook">
+      <img class="takebook-logo" src="http://127.0.0.1:8887/logo.jpg" />
+      <h2>takebook</h2>
+      <form class="d-flex" action="/search" method="POST">
+        <input
+          class="form-control me-2"
+          name="search"
+          type="search"
+          placeholder="kitap adı, yazar veya yayınevi ara"
+          aria-label="Search"
+        />
+        <button class="sepet btn btn-outline-success" type="submit">Ara</button>
+      </form>
+      <a href="/">
+        <button type="button" class="favori btn btn-success">
+          Favorilerim <span class="fb badge badge-light">4</span>
+        </button>
+      </a>
+      <a href="/">
+        <button type="button" class="sepet btn btn-primary">
+          Sepetim <span class="sb badge badge-light">4</span>
+        </button>
+      </a>
+    </div>
+
+    <div class="kullanici">
+      <div class="avatar">
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <img class="kitap-kapak" src="http://127.0.0.1:8887/logo.png" />
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="ozellik">
+        <label class="left">Kullanıcı Adı:</label>
+        <label class="right">{{kullanici[0]}}</label> <br />
+
+        <label class="left">Kullanıcı İsmi: </label>
+        <label class="right">{{kullanici[3]}}</label> <br />
+
+        <label class="left">Kullanıcı Soyismi: </label>
+        <label class="right">{{kullanici[4]}}</label> <br />
+
+        <label class="left">Kullanıcı E-Mail: </label>
+        <label class="right">{{kullanici[2]}}</label> <br />
+
+        <label class="left">Kullanıcı Adresi: </label>
+        <label class="right">{{kullanici[5]}}</label> <br />
+      </div>
+    </div>
+    <div class="detaylar">
+      <div class="bakiye">
+        <h6 class="bh">Güncel Bakiye: {{kullanici[6]}}</h6>
+        <button
+          type="button"
+          class="ekle b_button_slide blue b_slide_right btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          data-bs-whatever="@getbootstrap"
+        >
+          Ekle
+        </button>
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">BAKİYE EKLE</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form action="/bakiye_ekle/{{kullanici[0]}}" method="POST">
+                  <label>Eklenecek Miktar: </label>
+                  <input
+                    name="bakiye_id"
+                    type="text"
+                    class="form-control2"
+                  /><br />
+                  <button type="submit" class="onayla btn btn-primary">
+                    Onayla
+                  </button>
+                  <br />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h6 class="uh">Bilgileri Güncelle</h6>
+        <button
+          type="button"
+          class="guncelle2 blue b_button_slide b_slide_right btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal2"
+          data-bs-whatever="@getbootstrap"
+        >
+          Güncelle
+        </button>
+        <div
+          class="modal fade"
+          id="exampleModal2"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  KULLANICI GÜNCELLE
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form
+                  class="upd"
+                  action="/kullanici_bilgileri_guncelle/{{kullanici[0]}}"
+                  method="POST"
+                >
+                  <label>Kullanıcı İsmi: </label>
+                  <input
+                    name="kullanici_ismi"
+                    type="text"
+                    class="form-control"
+                    value="{{kullanici[3]}}"
+                  /><br />
+                  <label>Kullanıcı Soyadı: </label>
+                  <input
+                    name="kullanici_soyadi"
+                    type="text"
+                    class="form-control"
+                    value="{{kullanici[4]}}"
+                  /><br />
+                  <label>Email: </label>
+                  <input
+                    name="email"
+                    type="text"
+                    class="form-control"
+                    value="{{kullanici[2]}}"
+                  /><br />
+                  <label>Adres: </label>
+                  <input
+                    name="adres"
+                    type="text"
+                    class="form-control"
+                    value="{{kullanici[5]}}"
+                  /><br />
+                  <br />
+                  <button
+                    type="submit"
+                    class="
+                      b_button_slide
+                      blue
+                      b_slide_right
+                      guncelle
+                      btn btn-primary
+                    "
+                  >
+                    Güncelle
+                  </button>
+                  <br />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="yorumlar">
+        <h6 class="yh">Yapılan Yorumlar</h6>
+        <br />
+        {% for yorum in yorumlar %} {{ components.yorum_kullanici(yorum[1],
+        yorum[2], yorum[4], yorum[3], yorum[0]) }} {% endfor %}
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

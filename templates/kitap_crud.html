@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/kitap_crud.css') }}">
+    <title>Kitap</title>
+    <link rel = "icon" href = "http://127.0.0.1:8887/logo.png" type = "image/x-icon">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Giriş Ekranı</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin">Admin Sayfası</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+    <div class="container">
+        <div class="add">
+            <h4>Kitap Ekle</h4>
+            <button type="button" class="ekle btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">EKLE</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">KİTAP EKLE</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <form action="/kitap_ekle" method="POST">
+                    <div class="left">
+                        <label>Kitap ID: </label>
+                        <input name="kitap_id" type="text" class="form-control" ><br>
+                        <label>Kitap İsmi: </label>
+                        <input name="kitap_ismi" type="text" class="form-control" ><br>
+                        <label>Fiyat: </label>
+                        <input name="fiyat" type="text" class="form-control"><br>
+                        <label>Basım Tarihi: </label>
+                        <input name="basim_tarihi" type="text" class="form-control" ><br>
+                        <label>Yayınevi: </label>
+                        <input name="yayinevi" type="text" class="form-control" ><br>
+                        <label>Hamur Tipi: </label>
+                        <input name="hamur_tipi" type="text" class="form-control" ><br>
+                    </div>
+                    <div class="right">
+                        <label>Sayfa Sayısı:   </label>                   
+                        <input name="sayfa_sayisi" type="text" class="form-control" > <br>
+                        <label>Ebat: </label>
+                        <input name="ebat" type="text" class="form-control" ><br>
+                        <label>Dil: </label>
+                        <input name="dil" type="text" class="form-control" ><br>
+                        <label>Çevirmen: </label>
+                        <input name="cevirmen" type="text" class="form-control" ><br>
+                        <label>Yazar ID: </label>
+                        <input name="yazar_id" type="text" class="form-control" ><br>
+                        <label>Baskı Sayısı: </label>
+                        <input name="baski_sayisi" type="text" class="form-control" ><br>
+                    </div>
+                    <button type="submit" class="onayla btn btn-primary">Onayla</button> <br>
+                </form>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <form class="d-flex" action="/kitap_ara" method="POST">
+            <input name="search_word" class="search form-control me-2" type="search" placeholder="Ara" aria-label="Search">
+            <button class="btn btn-success" type="submit">Ara</button>
+        </form>
+        <div class="head">
+          <h3>Kitap Listesi</h3>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Kitap ID</th>
+                <th scope="col">Kitap İsmi</th>
+                <th scope="col">Fiyat</th>
+                <th scope="col">Basım Tarihi</th>
+                <th scope="col">Yayınevi</th>
+                <th scope="col">Hamur Tipi</th>
+                <th scope="col">Sayfa Sayısı</th>
+                <th scope="col">Ebat</th>
+                <th scope="col">Dil</th>
+                <th scope="col">Çevirmen</th>
+                <th scope="col">Yazar ID</th>
+                <th scope="col">Baskı Sayısı</th>
+                <th scope="col">Sil</th>
+                <th scope="col">Güncelle</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for kitap in kitaplar %}
+              <tr>
+              <td>{{kitap[0]}}</td>
+              <td>{{kitap[1]}}</td>
+              <td>{{kitap[2]}}</td>
+              <td>{{kitap[3]}}</td>
+              <td>{{kitap[4]}}</td>
+              <td>{{kitap[5]}}</td>
+              <td>{{kitap[6]}}</td>
+              <td>{{kitap[7]}}</td>
+              <td>{{kitap[8]}}</td>
+              <td>{{kitap[9]}}</td>
+              <td>{{kitap[10]}}</td>
+              <td>{{kitap[11]}}</td>
+              <td><a href="/delete_kitap/{{kitap[0]}}" class="btn btn-danger">Sil</a></td>
+              <td>
+                <button type="button" class="guncelle btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{kitap[0]}}" data-bs-whatever="@getbootstrap">Güncelle</button>
+                <div class="modal fade" id="exampleModal{{kitap[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">KİTAP GÜNCELLE</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/" method="POST">
+                    <div class="left">
+                        <label>Kitap ID: </label>
+                        <input name="kitap_id" type="text" class="form-control" value="{{kitap[0]}}"><br>
+                        <label>Kitap İsmi: </label>
+                        <input name="kitap_ismi" type="text" class="form-control" value="{{kitap[1]}}"><br>
+                        <label>Fiyat: </label>
+                        <input name="fiyat" type="text" class="form-control" value="{{kitap[2]}}"><br>
+                        <label>Basım Tarihi: </label>
+                        <input name="basim_tarihi" type="text" class="form-control" value="{{kitap[3]}}"><br>
+                        <label>Yayınevi: </label>
+                        <input name="yayinevi" type="text" class="form-control" value="{{kitap[4]}}"><br>
+                        <label>Hamur Tipi: </label>
+                        <input name="hamur_tipi" type="text" class="form-control" value="{{kitap[5]}}"><br>
+                    </div>
+                    <div class="right">
+                        <label>Sayfa Sayısı:   </label>                   
+                        <input name="sayfa_sayisi" type="text" class="form-control" value="{{kitap[6]}}"> <br>
+                        <label>Ebat: </label>
+                        <input name="ebat" type="text" class="form-control" value="{{kitap[7]}}"><br>
+                        <label>Baskı Sayısı: </label>
+                        <input name="baski_sayisi" type="text" class="form-control" value="{{kitap[8]}}"><br>
+                        <label>Dil: </label>
+                        <input name="dil" type="text" class="form-control" value="{{kitap[9]}}"><br>
+                        <label>Çevirmen: </label>
+                        <input name="cevirmen" type="text" class="form-control" value="{{kitap[10]}}"><br>
+                        <label>Yazar ID: </label>
+                        <input name="yazar_id" type="text" class="form-control" value="{{kitap[11]}}"><br>
+                    </div>
+                    <button type="submit" class="onayla btn btn-primary">Onayla</button> <br>
+                </form>
+                    </div>
+                    </div>
+                </div>
+                </div>
+              
+              
+              </td>
+              </tr>
+              
+              {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

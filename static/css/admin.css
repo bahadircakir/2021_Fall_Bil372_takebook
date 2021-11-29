@@ -1,0 +1,54 @@
+body {
+    background: linear-gradient(to right, #99ffcc 28%, #ffff99 85%);
+}
+
+div.container {
+    border-radius: 15px;
+    background-color: white;
+    align-content: center;
+    width: 1000px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 50px;
+    box-shadow: 0 0 50px rgb(189, 170, 170);
+}
+.blue {
+    background-color: #3178ea;
+    border-color: #3178ea;
+}
+.blue:hover {
+    border-color: #3178ea;
+}
+div.name {
+    text-align: center;
+    margin-top: 50px;
+    align-content: center;
+}
+button {
+    margin: 20px;
+    margin-left: 80px;
+    height: 175px;
+    width: 175px;
+}
+
+h1 {
+    text-align: center;
+    color: #3178ea;
+}
+
+h6 {
+    color: black;
+}
+
+.button_slide {
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 white;
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.4s;
+    transition: ease-out 0.4s;
+}
+
+.slide_left:hover {
+    box-shadow: inset 0 0 0 110px white;
+}

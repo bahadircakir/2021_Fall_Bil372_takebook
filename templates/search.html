@@ -1,0 +1,137 @@
+{% import "components.html" as components %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arama Sonuc</title>
+    <link rel = "icon" href = "http://127.0.0.1:8887/logo.png" type = "image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/search.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/card.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/login"><label>Giriş Yap</label></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/register"><label>Kayıt ol</label></a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <label>Yardım</label>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                  <li><a class="dropdown-item" href="#"><label>S.S.S.</label></a></li>
+                  <li><a class="dropdown-item" href="#"><label>İletişim</label></a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div class="takebook">
+        <img class="takebook-logo" src="http://127.0.0.1:8887/logo.jpg">
+        <h2>takebook</h2>
+        <form class="d-flex" action="/search" method="POST">
+            <input class="form-control me-2" name="search" type="search" placeholder="kitap adı, yazar veya yayınevi ara" aria-label="Search" value={{aranacak}}>
+            <button class="sepet btn btn-outline-success" type="submit">Ara</button>
+        </form>
+        <a href="/">
+            <button type="button" class="favori btn btn-success">
+              Favorilerim <span class="fb badge badge-light">0</span>
+          </button>
+          </a>
+          <a href="/">
+            <button type="button" class="sepet btn btn-primary">
+              Sepetim <span class="sb badge badge-light">0</span>
+          </button>
+          </a>
+    </div>
+
+    <form action="/search_with_conditions/{{aranacak}}" method="POST">
+        <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefaultOption" value="Kitap" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                Kitaplarda Ara
+                </label> <br>
+                <input class="form-check-input" type="radio" name="flexRadioDefaultOption" value="Yazar" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                Yazarlarda Ara
+                </label> <br>
+                <input class="form-check-input" type="radio" name="flexRadioDefaultOption" value="Yayinevi" id="flexRadioDefault3">
+                <label class="form-check-label" for="flexRadioDefault3">
+                Yayınevlerinde Ara
+                </label>
+        </div>
+        <div class="buttonlar">
+            <div class="bir">
+                <input class="form-check-input" type="radio" name="flexRadioDefaultCondition" value="AZ" id="flexRadioDefault4">
+                <label class="form-check-label" for="flexRadioDefault4">
+                Kitap -> A-Z
+                </label> <br>
+                <input class="form-check-input" type="radio" name="flexRadioDefaultCondition" value="ZA" id="flexRadioDefault5">
+                <label class="form-check-label" for="flexRadioDefault5">
+                Kitap -> Z-A
+                </label> <br>
+            </div>
+            <div class="iki">
+                <input class="form-check-input" type="radio" name="flexRadioDefaultCondition" value="FiyatArtan" id="flexRadioDefault6">
+                <label class="form-check-label" for="flexRadioDefault6">
+                Fiyat -> Artan
+                </label> <br>
+                <input class="form-check-input" type="radio" name="flexRadioDefaultCondition" value="FiyatAzalan" id="flexRadioDefault7">
+                <label class="form-check-label" for="flexRadioDefault7">
+                Fiyat -> Azalan
+                </label> <br>
+            </div>
+            <div class="uc">
+                <input class="form-check-input" type="radio" name="flexRadioDefaultCondition" value="PuanArtan" id="flexRadioDefault8">
+                <label class="form-check-label" for="flexRadioDefault8">
+                Puan -> Artan
+                </label> <br>
+                <input class="form-check-input" type="radio" name="flexRadioDefaultCondition" value="PuanAzalan" id="flexRadioDefault9">
+                <label class="form-check-label" for="flexRadioDefault9">
+                Puan -> Azalan
+                </label> <br>
+            </div>
+        </div>
+        <button class="btn b_button_slide b_slide_right blue filtre btn-success" type="submit">Filtrele</button>
+    </form>
+
+    <div class="sonuc">
+        <div class="ribbon-wrapper">
+            <div class="ribbon">SONUÇ</div>
+        </div>
+        <div class="cards">
+            {% for kitap in kitaplar %}
+                <div class="card-kabuk">
+                    {{ components.card(kitap[3], kitap[1], kitap[2], kitap[0]) }}
+                    <div class="buttons">
+                        <a href=""><button type="button" class="fav btn btn-primary">
+                            F
+                        </button></a>
+                        <a href="">
+                            <button type="button" class="sep btn btn-primary">
+                                S
+                            </button>
+                        </a>
+                        <a href="">
+                            <button type="button" class="pur btn btn-primary">
+                                S
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
