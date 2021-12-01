@@ -9,8 +9,11 @@ clone git@github.com:bahadircakir/2021_Fall_Bil372_takebook.git ile local'e alı
 BEFORE RUN
 
 Öncelikle local'e 
+
 pip install Flask
+
 pip install psycogp2
+
 pip install postgresql komutları ile gerekli kütüphaneler indirilir.
 
 RUN
