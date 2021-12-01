@@ -1,0 +1,29 @@
+.kabuk {
+    margin: 15px auto;
+    width: 700px;
+    border:1px solid black;
+}
+
+h6.ka {
+    float: left;
+    margin: 10px;
+    margin-bottom: -10px;
+}
+label.star {
+    color: #3178ea;
+}
+label.comment {
+    float: center;
+    margin-left: -50px;
+    margin: 10px;
+}
+label.trh {
+    margin: 7px;
+    color: cadetblue;
+    font-weight: 200;
+}
+
+label.ktp {
+    float: right;
+    margin: 10px;
+}
