@@ -25,3 +25,5 @@ python3 app.py ile localhost'ta çalıştırılır.
 *** okarahan 123456  kullanıcı adı ve şifresi ile site kullanılabilir. ***
 
 *** /admin ile admin sayfasına gidilir. ***
+
+## veriler python'un beautiful soup kutuphanesi ile html tag'leri taranarak cekildi.
